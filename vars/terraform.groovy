@@ -3,7 +3,7 @@ def call () {
         agent any
 
         parameters {
-            string(name : 'ENV', defaultvalue : '', descrption: 'Which environment?')
+            string(name : 'ENV', defaultValue : '', description: 'Which environment?')
         }
         options {
             ansicolor('xterm')
