@@ -6,7 +6,7 @@ def call () {
             string(name : 'ENV', defaultValue : '', description: 'Which environment?')
         }
         options {
-            ansicolor('xterm')
+            ansiColor('xterm')
         }
         stages {
             stage('init') {
