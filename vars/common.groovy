@@ -6,3 +6,11 @@ def compile () {
         sh 'mvn package'
     }
 }
+def test Cases(){
+    if (app_lang == "nodejs"){
+        sh 'echo test'
+    }
+    if (app_lang == "maven"){
+        sh 'echo test'
+    }
+}
