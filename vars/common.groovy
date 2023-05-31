@@ -6,7 +6,7 @@ def compile () {
         sh 'mvn package'
     }
 }
-def Test Cases(){
+def testcases(){
     if (app_lang == "nodejs"){
         sh 'echo test'
     }
