@@ -15,5 +15,5 @@ def testcases(){
   }
 
 def codequality() {
-    sh 'sonar-scanner -Dsonar.host.url=http://44.197.213.168:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=${component}'
+    sh 'sonar-scanner -Dsonar.host.url=http://44.197.213.168:9000 -Dsonar.login=admin -Dsonar.password=admin123 -Dsonar.projectKey=${component} ${sonar_extra_opts}'
 }
