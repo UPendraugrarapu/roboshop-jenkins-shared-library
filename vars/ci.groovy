@@ -10,6 +10,10 @@ def call () {
             stage('Compile/Build') {
                 steps {
                         script{
+                            withAWSParameterStore( naming: 'absolute', path: 'sonarqube.user', recursive: false, regionName: 'eu-east-1') {
+                                sh 'env'
+                                sh 'exit 1'
+                            }
                         common.compile()
                     }
 
