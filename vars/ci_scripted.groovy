@@ -9,7 +9,9 @@ def call () {
                 cleanWs()
                 git branch: 'main', url: 'https://github.com/upendraugrarapu/cart'
             }
+
             sh 'env'
+
            if (env.BRANCH_NAME != "main") {
                stage(Compile / Build) {
                    common.compile()
