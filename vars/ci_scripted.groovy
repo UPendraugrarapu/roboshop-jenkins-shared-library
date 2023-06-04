@@ -14,11 +14,13 @@ def call () {
 
 //                ls -l is to trouble shoot
             }
+            sh 'env'
+           if (env.BRANCH_NAME != "main") {
+               stage(Compile / Build) {
+                   common.compile()
+               }
+           }
 
-            stage(Compile / Build) {
-                sh 'env'
-                common.compile()
-            }
             stage('Test Cases') {
                 common.testcases()
             }
