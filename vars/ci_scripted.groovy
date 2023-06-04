@@ -4,6 +4,8 @@ def call () {
     }
     if (env.TAG_NAME ==~ ".*"){
         env.GTAG = "true"
+    }else{
+        env.GTAG = "false"
     }
     node ('workstation'){
         try {
