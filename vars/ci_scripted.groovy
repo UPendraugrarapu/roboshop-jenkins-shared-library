@@ -20,7 +20,7 @@ def call () {
                    common.compile()
                }
            }
-           if (env.GTAG != "true"){
+           if (env.GTAG != "true" || env.BRANCH_NAME != "main"){
                stage('Test Cases') {
                    common.testcases()
                }
