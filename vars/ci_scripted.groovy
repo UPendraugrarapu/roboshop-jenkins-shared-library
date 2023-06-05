@@ -16,6 +16,7 @@ def call () {
             }
 
             sh 'env'
+            print env.BRANCH_NAME
 
            if (env.BRANCH_NAME != "main") {
                stage(Compile / Build) {
@@ -31,6 +32,14 @@ def call () {
             if (BRANCH_NAME ==~ "PR-.*"){
                 stage('Code Quality') {
                     common.codequality()
+                }
+            }
+            if (env.GTAG != "true" && env.BRANCH_NAME != "main"){
+                stage('Package') {
+                    common.testcases()
+                }
+                stage('Artifact Upload') {
+                    common.testcases()
                 }
             }
         }catch (e) {
