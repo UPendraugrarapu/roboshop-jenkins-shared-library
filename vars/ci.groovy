@@ -39,7 +39,7 @@ def call () {
                     common.prepareArtifacts()
                 }
                 stage('Artifact Upload') {
-                    common.testcases()
+                    common.artifactUpload()
                 }
             }
         }catch (e) {
@@ -47,4 +47,5 @@ def call () {
         }
 
     }
+
 }
