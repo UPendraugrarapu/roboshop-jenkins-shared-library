@@ -12,7 +12,7 @@ def call () {
 
             stage ('Check out Code'){
                 cleanWs()
-                git branch: 'main', url: 'https://github.com/upendraugrarapu/cart'
+                git branch: 'main', url: 'https://github.com/upendraugrarapu/${component}'
             }
 
             sh 'env'
