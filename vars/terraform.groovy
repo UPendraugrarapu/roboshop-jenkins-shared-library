@@ -10,14 +10,14 @@ def call () {
             ansiColor('xterm')
         }
         stages {
-            stage('init') {
+            stage('Init') {
                 steps {
                     sh 'terraform init -backend-config=env-${ENV}/state.tfvars'
                 }
             }
             stage ('Apply') {
                 steps {
-                    sh 'terraform ${ACTION} -auto-approve -var-file=env-dev/main.tfvars'
+                    sh 'terraform ${ACTION} -auto-approve -var-file=env-${ENV}/main.tfvars'
                     //sh 'echo'
                 }
             }
