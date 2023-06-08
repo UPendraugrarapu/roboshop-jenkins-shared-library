@@ -4,7 +4,7 @@ def call () {
 
         parameters {
             string(name : 'ENV', defaultValue : '', description: 'Which environment?')
-            string(name : 'ACTION', defaultValue : '', description: 'Which environment?')
+            string(name : 'ACTION', defaultValue : '', description: 'Which Action?')
         }
         options {
             ansiColor('xterm')
