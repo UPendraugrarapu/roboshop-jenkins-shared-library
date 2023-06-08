@@ -10,13 +10,14 @@ def call () {
             ansiColor('xterm')
         }
 
-                stages {
-                    stage('Cleanup Workspace') {
-                        steps {
-                            cleanWs()
-                        }
+//                stages {
+//                    stage('Cleanup Workspace') {
+//                        steps {
+//                            cleanWs()
+//                        }
                             stage('Init') {
                                 steps {
+                                    cleanWs()
                                     sh 'terraform init -backend-config=env-${ENV}/state.tfvars'
                                 }
                             }
@@ -27,6 +28,6 @@ def call () {
                                 }
                             }
                         }
-                    }
-                }
+
+
 }
