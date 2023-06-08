@@ -9,8 +9,9 @@ def call () {
         options {
             ansiColor('xterm')
         }
-        cleanWs()
+
         stages {
+            cleanWs()
             stage('Init') {
                 steps {
                     sh 'terraform init -backend-config=env-${ENV}/state.tfvars'
