@@ -24,12 +24,12 @@ def codequality() {
 }
 def prepareArtifacts(){
     sh 'echo ${TAG_NAME} >VERSION'
-    if (app_lang == "nodejs" || app_lang == "angular"){
-        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
-    }
+
     if (app_lang == "maven") {
         sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar VERSION'
         //will get lot of files after maven packaging out of we need ${component}.jar file need to upload
+    } else{
+        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
     }
 }
 
