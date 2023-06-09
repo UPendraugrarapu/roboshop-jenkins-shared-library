@@ -3,7 +3,8 @@ def compile () {
         sh 'npm install'
     }
     if (app_lang == "maven"){
-        sh 'mvn package'
+        sh 'mvn package; mv target/${component}-1.0.jar ${component}.jar'
+        //the second command from shipping component
     }
 }
 def testcases(){
@@ -23,10 +24,13 @@ def codequality() {
 }
 def prepareArtifacts(){
     sh 'echo ${TAG_NAME} >VERSION'
-    //if (app_lang == "nodejs" || app_lang == "angular"){
+    if (app_lang == "nodejs" || app_lang == "angular"){
         sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
-    //}
-
+    }
+    if (app_lang == "maven") {
+        sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar VERSION'
+        //will get lot of files after maven packaging out of we need ${component}.jar file need to upload
+    }
 }
 
 def artifactUpload(){
