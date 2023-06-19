@@ -24,7 +24,7 @@ def call(){
 
                 steps{
                     script{
-                        sh 'aws ec2 describe-instances --filters "Name=tag:Name, Values=${component}-${environment}" --query "Reservations[*].Instances[*].PrivateIpAddress" --output text >/tmp/servers'
+                        sh 'aws ec2 describe-instances --filters "Name=tag:Name, Values=${component}-${environment}" --query "Reservations[*].Instances[*].PrivateIpAddress" --output text | xargs -n1 >/tmp/servers'
                         sh 'ansible-playbook -i /tmp/servers roboshop.yml -e role_name=${component} -e env=${environment}'
 //                        Here we are using ansible push mechanisim
 //                        /tmp/servers is dynamic inventory file
