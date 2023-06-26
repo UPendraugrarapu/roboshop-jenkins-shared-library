@@ -38,16 +38,21 @@ def prepareArtifacts(){
 }
 
 def artifactUpload(){
-    env.NEXUS_USER = sh ( script: 'aws ssm get-parameter --name prod.nexus.user --with-decryption | jq .Parameter.Value | xargs', returnStdout: true ).trim()
-    env.NEXUS_PASS = sh ( script: 'aws ssm get-parameter --name prod.nexus.pass --with-decryption | jq .Parameter.Value | xargs', returnStdout: true ).trim()
-    wrap([$class: 'MaskPasswordsBuildWrapper',
-          varPasswordPairs: [[password: NEXUS_PASS],[password: NEXUS_USER]]]) {
-        sh 'echo ${TAG_NAME} >VERSION'
-        sh 'curl -v -u ${NEXUS_USER}:${NEXUS_PASS} --upload-file ${component}-${TAG_NAME}.zip http://172.31.2.202:8081/repository/${component}/${component}-${TAG_NAME}.zip'
-    }
-
+//    env.NEXUS_USER = sh ( script: 'aws ssm get-parameter --name prod.nexus.user --with-decryption | jq .Parameter.Value | xargs', returnStdout: true ).trim()
+//    env.NEXUS_PASS = sh ( script: 'aws ssm get-parameter --name prod.nexus.pass --with-decryption | jq .Parameter.Value | xargs', returnStdout: true ).trim()
+//    wrap([$class: 'MaskPasswordsBuildWrapper',
+//          varPasswordPairs: [[password: NEXUS_PASS],[password: NEXUS_USER]]]) {
+//        sh 'echo ${TAG_NAME} >VERSION'
+//        sh 'curl -v -u ${NEXUS_USER}:${NEXUS_PASS} --upload-file ${component}-${TAG_NAME}.zip http://172.31.2.202:8081/repository/${component}/${component}-${TAG_NAME}.zip'
+//    }
     //trim will delete the newline in output xargs removes the double quotes
     //we can access only env variables add env.for user and pass
+
+
+//    ECR push commands will get from ECR it self
+    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 584455519448.dkr.ecr.us-east-1.amazonaws.com'
+    sh 'docker push 584455519448.dkr.ecr.us-east-1.amazonaws.com/${component}:${TAG_NAME}'
+
 
 
 }
