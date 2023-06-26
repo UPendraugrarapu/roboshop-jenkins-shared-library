@@ -23,14 +23,18 @@ def codequality() {
 
 }
 def prepareArtifacts(){
-    sh 'echo ${TAG_NAME} >VERSION'
+//    sh 'echo ${TAG_NAME} >VERSION'
+//
+//    if (app_lang == "maven") {
+//        sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION'
+//        //will get lot of files after maven packaging out of we need ${component}.jar file need to upload
+//    } else{
+//        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
+//    }
 
-    if (app_lang == "maven") {
-        sh 'zip -r ${component}-${TAG_NAME}.zip ${component}.jar schema VERSION'
-        //will get lot of files after maven packaging out of we need ${component}.jar file need to upload
-    } else{
-        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
-    }
+    docker build -t 584455519448.dkr.ecr.us-east-1.amazonaws.com/${component}:${TAG_NAME} .
+
+//    the above one is ecr url
 }
 
 def artifactUpload(){
