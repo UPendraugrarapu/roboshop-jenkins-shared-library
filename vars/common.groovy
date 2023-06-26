@@ -32,7 +32,7 @@ def prepareArtifacts(){
 //        sh 'zip -r ${component}-${TAG_NAME}.zip * -x Jenkinsfile'
 //    }
 
-    docker build -t 584455519448.dkr.ecr.us-east-1.amazonaws.com/${component}:${TAG_NAME} .
+   sh 'docker build -t 584455519448.dkr.ecr.us-east-1.amazonaws.com/${component}:${TAG_NAME} .'
 
 //    the above one is ecr url
 }
