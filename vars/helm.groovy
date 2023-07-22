@@ -26,7 +26,7 @@ def call(){
 
                 steps{
                     script{
-                        sh 'helm install ${component} APP/helm/${environment}.yaml'
+                        sh 'helm install ${component} . -f APP/helm/${environment}.yaml --set appversion=${app_version}'
                     }
 
 
